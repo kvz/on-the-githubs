@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+var onTheGithubs = require('..');
+var cli          = require('cli').enable('status', 'help', 'version', 'timeout');
+
+cli.parse({
+  rep: ['r', 'Repository', 'string'],
+  org: ['o', 'Organisation', 'string'],
+});
+
+cli.main(function(args, options) {
+  if (!options.rep) {
+    this.fatal('Please specify a repository');
+  }
+  if (!options.org) {
+    this.fatal('Please specify a organisation');
+  }
+
+  cli.spinner('Working..');
+
+  onTheGithubs.aggregate({hey: "hoi"}, function (err, user) {
+  	if (err) {
+  		return cli.err(err);
+  	}
+    
+  	console.log(user);
+  });
+
+  cli.ok('yo');
+  cli.spinner('Working.. done!', true);
+});

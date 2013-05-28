@@ -1,0 +1,25 @@
+{
+  "name": "on-the-githubs",
+  "version": "0.0.1",
+  "description": "Uses GitHub API3 to aggregate community activity of open source projects",
+  "homepage": "https://github.com/kvz/on-the-githubs",
+  "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "dependencies": {
+    "cli": "~0.4.4-2",
+    "async": "~0.2.9",
+    "request-json": "~0.3.6"
+  },
+  "keywords": [
+    "github",
+    "community",
+    "activity",
+    "api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kvz/on-the-githubs.git"
+  }
+}

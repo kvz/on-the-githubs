@@ -9,10 +9,10 @@ cli.parse({
 
 cli.main(function(args, options) {
   if (!options.rep) {
-    this.fatal('Please specify a repository');
+    this.fatal('Please specify a repository. Use -h for help. ');
   }
   if (!options.org) {
-    this.fatal('Please specify a organisation');
+    this.fatal('Please specify a organisation. Use -h for help. ');
   }
 
   cli.spinner('Working..');

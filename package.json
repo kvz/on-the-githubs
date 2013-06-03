@@ -10,7 +10,7 @@
   "dependencies": {
     "cli": "~0.4.4-2",
     "async": "~0.2.9",
-    "request-json": "~0.3.6"
+    "request": "~2.21.0"
   },
   "keywords": [
     "github",

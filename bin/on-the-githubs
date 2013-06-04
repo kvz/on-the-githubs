@@ -18,6 +18,7 @@ cli.main(function(args, options) {
   var config = {
     service: 'https://api.github.com',
     paginate: true,
+    concurrency: 8,
     userpaths: {
       contributors: [
         // '/orgs/{owner}/members',

@@ -19,6 +19,7 @@ cli.main(function(args, options) {
     service: 'https://api.github.com',
     paginate: true,
     concurrency: 8,
+    squash: true,
     userpaths: {
       contributors: [
         // '/orgs/{owner}/members',

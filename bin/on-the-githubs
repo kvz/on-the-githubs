@@ -4,7 +4,7 @@ var cli          = require('cli').enable('status', 'help', 'version', 'timeout')
 
 cli.parse({
   rep: ['r', 'Repository', 'string'],
-  org: ['o', 'Organisation', 'string'],
+  org: ['o', 'Organisation', 'string']
 });
 
 cli.main(function(args, options) {
@@ -17,12 +17,28 @@ cli.main(function(args, options) {
 
   cli.spinner('Working..');
 
-  onTheGithubs.aggregate({hey: "hoi"}, function (err, user) {
-  	if (err) {
-  		return cli.err(err);
-  	}
-    
-  	console.log(user);
+  var config = {
+    contributors: [
+      // '/orgs/{owner}/members',
+      '/repos/{owner}/{repo}/collaborators',
+      '/repos/{owner}/{repo}/contributors'
+    ],
+    collaborators: [
+      '/repos/{owner}/{repo}/issues/comments',
+      '/repos/{owner}/{repo}/issues'
+    ],
+    watchers: [
+      '/repos/{owner}/{repo}/subscribers',
+      '/repos/{owner}/{repo}/stargazers'
+    ]
+  };
+
+  onTheGithubs.aggregate(config, function (err, user) {
+    if (err) {
+      return cli.error(err);
+    }
+
+    console.log(user);
   });
 
   cli.ok('yo');

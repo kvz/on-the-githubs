@@ -31,7 +31,7 @@ cli.main(function(args, options) {
     ]
   };
 
-  onTheGithubs.aggregate(config, function (err, users) {
+  onTheGithubs.aggregate(cli, config, function (err, users) {
     if (err) {
       return cli.error(err);
     }

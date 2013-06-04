@@ -3,39 +3,47 @@ var onTheGithubs = require('..');
 var cli          = require('cli').enable('status', 'help', 'version', 'timeout');
 
 cli.parse({
-  rep: ['r', 'Repository', 'string'],
-  org: ['o', 'Organisation', 'string']
+  repo: ['r', 'Repository', 'string'],
+  owner: ['o', 'Organisation / User', 'string']
 });
 
 cli.main(function(args, options) {
-  if (!options.rep) {
+  if (!options.repo) {
     this.fatal('Please specify a repository. Use -h for help. ');
   }
-  if (!options.org) {
+  if (!options.owner) {
     this.fatal('Please specify a organisation. Use -h for help. ');
   }
 
   var config = {
-    contributors: [
-      // '/orgs/{owner}/members',
-      '/repos/{owner}/{repo}/collaborators',
-      '/repos/{owner}/{repo}/contributors'
-    ],
-    collaborators: [
-      '/repos/{owner}/{repo}/issues/comments',
-      '/repos/{owner}/{repo}/issues'
-    ],
-    watchers: [
-      '/repos/{owner}/{repo}/subscribers',
-      '/repos/{owner}/{repo}/stargazers'
-    ]
+    service: 'https://api.github.com',
+    paginate: true,
+    userpaths: {
+      contributors: [
+        // '/orgs/{owner}/members',
+        '/repos/{owner}/{repo}/collaborators',
+        '/repos/{owner}/{repo}/contributors'
+      ],
+      collaborators: [
+        '/repos/{owner}/{repo}/issues/comments',
+        '/repos/{owner}/{repo}/issues'
+      ],
+      watchers: [
+        '/repos/{owner}/{repo}/subscribers',
+        '/repos/{owner}/{repo}/stargazers'
+      ]
+    }
   };
+
+  config.owner = options.owner;
+  config.repo  = options.repo;
 
   onTheGithubs.aggregate(cli, config, function (err, users) {
     if (err) {
       return cli.error(err);
     }
 
+    // Display users
     for (var type in users) {
       cli.ok(type);
       for (var i in users[type]) {

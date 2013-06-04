@@ -15,8 +15,6 @@ cli.main(function(args, options) {
     this.fatal('Please specify a organisation. Use -h for help. ');
   }
 
-  cli.spinner('Working..');
-
   var config = {
     contributors: [
       // '/orgs/{owner}/members',
@@ -33,14 +31,16 @@ cli.main(function(args, options) {
     ]
   };
 
-  onTheGithubs.aggregate(config, function (err, user) {
+  onTheGithubs.aggregate(config, function (err, users) {
     if (err) {
       return cli.error(err);
     }
 
-    console.log(user);
+    for (var type in users) {
+      cli.ok(type);
+      for (var i in users[type]) {
+        cli.ok('  ' + users[type][i].login);
+      }
+    }
   });
-
-  cli.ok('yo');
-  cli.spinner('Working.. done!', true);
 });

@@ -13,11 +13,10 @@
   margin:0;
   width:550px;
 }
-#githubs span.timeago {
+#githubs abbr.timeago {
   position:absolute;
   right:0;
   float:left;
-  width:90px;
   text-align:right;
 }
 #githubs > li {

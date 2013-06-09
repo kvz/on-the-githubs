@@ -1,31 +1,9 @@
 $(function() {
-  $.timeago.settings = {
-    strings: {
-      prefixAgo: null,
-      prefixFromNow: null,
-      suffixAgo: "ago",
-      suffixFromNow: "from now",
-      seconds: "~1 min",
-      minute: "~1 min",
-      minutes: "%d min",
-      hour: "%dh",
-      hours: "%dh",
-      day: "a day",
-      days: "%d days",
-      month: "about a month",
-      months: "%d months",
-      year: "about a year",
-      years: "%d years",
-      wordSeparator: " ",
-      numbers: []
-    }
-  };
-
   var loadGithubs = function () {
     var d = $.Deferred();
 
     var githubs = localStorage.getItem('githubs');
-    var time = localStorage.getItem('githubs_date');
+    var time    = localStorage.getItem('githubs_date');
     try {
       githubs = JSON.parse(githubs);
     } catch (err) {
@@ -64,7 +42,7 @@ $(function() {
     var $githubs = $('#githubs');
     $githubs.html('');
 
-    var template = '<span class="timeago" title="${created}">${created}</span>';
+    var template = '<abbr class="timeago" title="${created}">${created}</abbr>';
     template += '<img src="${gravatarSrc}" class="gravatar" />';
     template += '<p><a target="_blank" href="${userUrl}" class="author">${username}</a> ';
     template += '<span>{{html action}}</span>';
@@ -210,7 +188,7 @@ $(function() {
       $('<li/>').append(entry).appendTo($githubs);
     }
 
-    $('span.timeago').timeago();
+    $('abbr.timeago').timeago();
     $('a[rel]').tooltip();
   });
 

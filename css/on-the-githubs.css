@@ -1,49 +1,49 @@
-#githubs {
+.on-the-githubs-events {
   list-style-type:none;
   padding:0;
   margin:0 0 0 5px;
 }
-#githubs img {
+.on-the-githubs-events img {
   float:left;
   margin:0;
 }
-#githubs p {
+.on-the-githubs-events p {
   display:inline-block;
   float:left;
   margin:0;
   width:550px;
 }
-#githubs abbr.timeago {
+.on-the-githubs-events abbr.timeago {
   position:absolute;
   right:0;
   float:left;
   text-align:right;
 }
-#githubs > li {
+.on-the-githubs-events > li {
   border-bottom:1px solid #eee;
   padding:5px 0;
   clear:both;
   position:relative;
 }
-#githubs > li:last-child { border-bottom:none; }
-#githubs .gravatar { margin-right:7px; }
-#githubs .commits {
+.on-the-githubs-events > li:last-child { border-bottom:none; }
+.on-the-githubs-events .gravatar { margin-right:7px; }
+.on-the-githubs-events .commits {
   display:none;
   clear:both;
   padding-top:5px;
 }
-#githubs .commits li {
+.on-the-githubs-events .commits li {
   list-style-type:none;
   margin-left:10px;
   font-size:12px;
 }
-#githubs .commits li a {
+.on-the-githubs-events .commits li a {
   display:inline-block;
   width:50px;
   text-align:right;
   margin-right:3px;
 }
-#githubs > li:hover .commits { display:block; }
+.on-the-githubs-events > li:hover .commits { display:block; }
 img.gravatar {
   border-radius:10px;
   width:20px;

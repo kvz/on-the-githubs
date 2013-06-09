@@ -39,7 +39,7 @@ $(function() {
   };
 
   loadGithubs().done(function(data) {
-    var $githubs = $('#githubs');
+    var $githubs = $('.on-the-githubs-events');
     $githubs.html('');
 
     var template = '<abbr class="timeago" title="${created}">${created}</abbr>';

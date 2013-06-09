@@ -16,7 +16,8 @@
         This demo is just here to aid developers.
       </p>
 
-      <div class="on-the-githubs-events" data-repo="orgs/tus">
+      <div class="on-the-githubs-events" data-event-source="repos/kvz/nsfailover">
+        <!-- data-event-source="orgs/tus" -->
       </div>
 
     </div>
@@ -24,13 +25,12 @@
 
   <script src="/js/jquery.js"></script>
   <script src="/js/jquery.timeago.js"></script>
-  <script src="/js/jquery.tmpl.js"></script>
   <script src="/js/jquery.ghevents.js"></script>
   
   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
     $('button[rel]').tooltip();
-    $('.on-the-githubs-events').ghevents();
+    $('.on-the-githubs-events').ghevents({"event-source": 'orgs/tus'});
   </script>
 </html>

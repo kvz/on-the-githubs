@@ -17,6 +17,12 @@
       return result;
     };
 
+    var templater = function (template, vars) {
+      return template.replace(/\{([^\}]*)\}/g, function(m, key) {
+        return vars.hasOwnProperty(key) ? vars[key] : ""; 
+      });
+    }
+
     var download = function (repo) {
       var d = $.Deferred();
 
@@ -57,11 +63,11 @@
 
       $obj.html('');
 
-      var template = '<abbr class="timeago" title="${created}">${created}</abbr>';
-      template += '<img src="${gravatarSrc}" class="gravatar" />';
-      template += '<p><a target="_blank" href="${userUrl}" class="author">${username}</a> ';
-      template += '<span>{{html action}}</span>';
-      template += ' <a target="_blank" href="${repoUrl}">${repoName}</a>${branch}{{html commits}}</p>';
+      var template = '<abbr class="timeago" title="{created}">{created}</abbr>';
+      template += '<img src="{gravatarSrc}" class="gravatar" />';
+      template += '<p><a target="_blank" href="{userUrl}" class="author">{username}</a> ';
+      template += '<span>{action}</span>';
+      template += ' <a target="_blank" href="{repoUrl}">{repoName}</a>{branch}{commits}</p>';
       template += '<div class="clearfix"></div>';
 
       for (var i = 0; i < data.data.length; i++) {
@@ -187,19 +193,18 @@
             break;
         }
 
-        var entry = $.tmpl(template,
-          {
-            gravatarSrc: gravatarSrc,
-            userUrl: makeHtmlUrl(item.actor.url),
-            username: username,
-            repoUrl: makeHtmlUrl(item.repo.url),
-            repoName: item.repo.name,
-            branch: branch,
-            created: item.created_at,
-            action: action,
-            commits: commits
-          }
-        );
+        var entry = templater(template, {
+          gravatarSrc: gravatarSrc,
+          userUrl: makeHtmlUrl(item.actor.url),
+          username: username,
+          repoUrl: makeHtmlUrl(item.repo.url),
+          repoName: item.repo.name,
+          branch: branch,
+          created: item.created_at,
+          action: action,
+          commits: commits
+        });
+
         $('<li/>').append(entry).appendTo($obj);
       }
 

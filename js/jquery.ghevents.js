@@ -1,5 +1,5 @@
 (function( $ ) {
- 
+
   $.fn.ghevents = function( options ) {
 
     var settings = $.extend({
@@ -20,7 +20,7 @@
 
     var templater = function (template, vars) {
       return template.replace(/\{([^\}]*)\}/g, function(m, key) {
-        return vars.hasOwnProperty(key) ? vars[key] : ""; 
+        return vars.hasOwnProperty(key) ? vars[key] : "";
       });
     };
 
@@ -35,10 +35,10 @@
       var time    = localStorage.getItem('githubs_date');
       var url     = 'https://api.github.com/' + source + '/events?per_page=20&callback=?';
 
-      try {
+      // try {
         githubs = JSON.parse(githubs);
-      } catch (err) {
-      }
+      // } catch (err) {
+      // }
 
       if (githubs.data && time && now - time < 3 * 60) {
         d.resolve(githubs);

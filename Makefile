@@ -10,7 +10,7 @@ pages:
 	cp js/jquery.js /tmp/publish-ghpages/js/
 	cp js/jquery.timeago.js /tmp/publish-ghpages/js/
 	cp js/jquery.ghevents.js /tmp/publish-ghpages/js/
-	cp css/on-the-githubs.css /tmp/publish-ghpages/css/
+	cp css/ghevents.css /tmp/publish-ghpages/css/
 	cp demo.html /tmp/publish-ghpages/index.html
 
 	cd /tmp/publish-ghpages \

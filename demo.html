@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>on-the-githubs events demo</title>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet" />
-    <link href="./css/on-the-githubs.css" rel="stylesheet" />
+    <link href="./css/ghevents.css" rel="stylesheet" />
   </head>
   <body>
     <div class="container">
@@ -16,7 +16,7 @@
         This demo is just here to aid developers.
       </p>
 
-      <div class="on-the-githubs-events" data-event-source="repos/kvz/nsfailover">
+      <div class="on-the-githubs-events" data-event-source="repos/kvz/on-the-githubs">
         Loading...
       </div>
 
@@ -31,6 +31,11 @@
 
   <script type="text/javascript">
     $('button[rel]').tooltip();
-    $('.on-the-githubs-events').ghevents();
+
+    var options = {};
+    if (window.location.hash) {
+      options['event-source'] = window.location.hash.substr(1);
+    }
+    $('.on-the-githubs-events').ghevents(options);
   </script>
 </html>

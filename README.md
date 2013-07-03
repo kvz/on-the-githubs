@@ -3,7 +3,7 @@ on-the-githubs
 
 Uses GitHub API3 to aggregate community activity of open source projects.
 
-Demo: http://kvz.github.io/on-the-githubs/
+Demo: http://kvz.github.io/on-the-githubs/#repos/kvz/nsfailover
 
 ## Build contributor cache
 
@@ -13,10 +13,10 @@ rate-limited, we aggregate & cache the information.
 Run:
 
 ```bash
-./bin/on-the-githubs -o kvz -r nsfailover --debug
+./bin/contributor-cache -o kvz -r nsfailover --debug
 ```
 
-## Try the feed
+## Try the feed locally
 
 For local development, here's how to run the repo-included demo:
 

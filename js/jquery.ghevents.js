@@ -4,7 +4,7 @@
 
     var settings = $.extend({
       // event-source: "repos/kvz/nsfailover",
-    }, options);
+    }, options || {});
     var self = this;
 
     var makeHtmlUrl = function (url) {

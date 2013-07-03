@@ -64,9 +64,9 @@
       var $obj  = $(this);
       var eventSource;
       var val;
-      if ((val = $obj.data('event-source'))) {
+      if ((val = options['event-source'])) {
         eventSource = val;
-      } else if ((val = options['event-source'])) {
+      } else if ((val = $obj.data('event-source'))) {
         eventSource = val;
       }
 

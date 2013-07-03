@@ -3,6 +3,8 @@ on-the-githubs
 
 Uses GitHub API3 to aggregate community activity of open source projects.
 
+Demo: http://kvz.github.io/on-the-githubs/
+
 ## Build contributor cache
 
 Because getting all contributor info involves many GitHub API calls, and it's
@@ -23,7 +25,7 @@ npm install --dev
 node demo-server.js
 ```
 
-- Point your browser to http://localhost:8080
+- Point your browser to http://127.0.0.1:8080
 
 ## License
 

@@ -14,4 +14,4 @@ http.createServer(function(req, res) {
     .pipe(res);
 }).listen(port);
 
-console.log('Demo running at http://localhost:' + port + '/');
+console.log('Demo running at http://127.0.0.1:' + port + '/');

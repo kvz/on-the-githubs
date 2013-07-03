@@ -31,22 +31,17 @@
 
       var d       = $.Deferred();
       var githubs = localStorage.getItem('ghevents-feed-' + source);
-      var now     = +new Date() / 1000;
       var time    = localStorage.getItem('ghevents-date-' + source);
+      var now     = +new Date() / 1000;
       var url     = 'https://api.github.com/' + source + '/events?per_page=20&callback=?';
 
-      // try {
-        githubs = JSON.parse(githubs);
-      // } catch (err) {
-      // }
-
+      githubs = JSON.parse(githubs);
       if (githubs && githubs.data && time && now - time < 3 * 60) {
         d.resolve(githubs);
         return d;
       }
 
       $.getJSON(url, function(data, textStatus, jqXHR) {
-        // github does not support the per_page parameter for events
         if (data.data.message) {
           throw Error('GitHub says: ' + data.data.message + ' for url: ' + url);
         }

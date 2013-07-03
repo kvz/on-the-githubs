@@ -30,9 +30,9 @@
       }
 
       var d       = $.Deferred();
-      var githubs = localStorage.getItem('githubs');
+      var githubs = localStorage.getItem('ghevents-feed-' + source);
       var now     = +new Date() / 1000;
-      var time    = localStorage.getItem('githubs_date');
+      var time    = localStorage.getItem('ghevents-date-' + source);
       var url     = 'https://api.github.com/' + source + '/events?per_page=20&callback=?';
 
       // try {
@@ -52,8 +52,8 @@
         }
         data.data = data.data.slice(0, 20);
 
-        localStorage.setItem('githubs', JSON.stringify(data));
-        localStorage.setItem('githubs_date', now);
+        localStorage.setItem('ghevents-feed-' + source, JSON.stringify(data));
+        localStorage.setItem('ghevents-date-' + source, now);
         d.resolve(data);
       });
 

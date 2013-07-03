@@ -74,11 +74,11 @@
         $obj.html('');
 
         var template = '<abbr class="timeago" title="{created}">{created}</abbr>';
-        template += '<img src="{gravatarSrc}" class="gravatar" />';
-        template += '<p><a target="_blank" href="{userUrl}" class="author">{username}</a> ';
-        template += '<span>{action}</span>';
-        template += ' <a target="_blank" href="{repoUrl}">{repoName}</a>{branch}{commits}</p>';
-        template += '<div class="clearfix"></div>';
+        template    += '<img src="{gravatarSrc}" class="gravatar" />';
+        template    += '<p><a target="_blank" href="{userUrl}" class="author">{username}</a> ';
+        template    += '<span>{action}</span>';
+        template    += ' <a target="_blank" href="{repoUrl}">{repoName}</a>{branch}{commits}</p>';
+        template    += '<div class="clearfix"></div>';
 
         for (var i = 0; i < data.data.length; i++) {
           var item = data.data[i];

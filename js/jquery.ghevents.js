@@ -40,7 +40,7 @@
       // } catch (err) {
       // }
 
-      if (githubs.data && time && now - time < 3 * 60) {
+      if (githubs && githubs.data && time && now - time < 3 * 60) {
         d.resolve(githubs);
         return d;
       }

@@ -1,6 +1,6 @@
-all: pages
+all: ghpages
 
-pages:
+ghpages:
 	rm -rf /tmp/publish-ghpages
 
 	mkdir -p /tmp/publish-ghpages
@@ -21,4 +21,7 @@ pages:
 
 	rm -rf /tmp/publish-ghpages
 
-.PHONY: pages
+test:
+	./node_modules/.bin/mocha --reporter list
+
+.PHONY: pages test

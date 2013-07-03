@@ -18,21 +18,21 @@ cli.main(function(args, options) {
   var config = {
     service: 'https://api.github.com',
     paginate: true,
-    concurrency: 8,
+    concurrency: 1,
     squash: true,
     userpaths: {
       contributors: [
         // '/orgs/{owner}/members',
-        '/repos/{owner}/{repo}/collaborators',
-        '/repos/{owner}/{repo}/contributors'
+        '/repos/{owner}/{repo}/contributors',
+        '/repos/{owner}/{repo}/collaborators'
       ],
       collaborators: [
-        '/repos/{owner}/{repo}/issues/comments',
-        '/repos/{owner}/{repo}/issues'
+        // '/repos/{owner}/{repo}/issues/comments',
+        // '/repos/{owner}/{repo}/issues'
       ],
       watchers: [
-        '/repos/{owner}/{repo}/subscribers',
-        '/repos/{owner}/{repo}/stargazers'
+        // '/repos/{owner}/{repo}/subscribers',
+        // '/repos/{owner}/{repo}/stargazers'
       ]
     }
   };
@@ -40,7 +40,8 @@ cli.main(function(args, options) {
   config.owner = options.owner;
   config.repo  = options.repo;
 
-  onTheGithubs.aggregate(cli, config, function (err, users) {
+  var agg = onTheGithubs.aggregate(cli, config);
+  agg.execute(function (err, users) {
     if (err) {
       return cli.error(err);
     }
@@ -52,5 +53,6 @@ cli.main(function(args, options) {
         cli.ok('  ' + users[type][i].login);
       }
     }
+    cli.ok('Done.');
   });
 });

@@ -30,3 +30,6 @@ node demo-server.js
 ## License
 
 This project is licensed under the MIT license, see `LICENSE.txt`.
+
+Contains code of [jquery-timeago](https://github.com/rmm5t/jquery-timeago)
+by [Ryan McGeary](https://github.com/rmm5t/jquery-timeago/blob/master/LICENSE.txt)

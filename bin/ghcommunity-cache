@@ -3,10 +3,10 @@ var onTheGithubs = require('..');
 var cli          = require('cli').enable('status', 'help', 'version', 'timeout');
 
 cli.parse({
-  repo: ['r', 'Repository', 'string'],
+  repo: ['r', 'Repositories (comma separated)', 'string'],
   user: ['u', 'User / Organisation', 'string'],
-  format: ['f', 'Format', 'string', 'html'],
-  output: ['o', 'Output', 'string', '-']
+  format: ['f', 'Format', ['html', 'json'], 'html'],
+  output: ['o', 'Output', 'path', '-']
 });
 
 cli.main(function(args, options) {
@@ -14,7 +14,7 @@ cli.main(function(args, options) {
     this.fatal('Please specify a repository. Use -h for help. ');
   }
   if (!options.user) {
-    this.fatal('Please specify a organisation. Use -h for help. ');
+    this.fatal('Please specify a user/organisation. Use -h for help. ');
   }
 
   var config = {
@@ -48,13 +48,26 @@ cli.main(function(args, options) {
       return cli.error(err);
     }
 
-    // Display users
-    for (var type in users) {
-      cli.ok(type);
-      for (var i in users[type]) {
-        cli.ok('  ' + users[type][i].login);
+    var out = '';
+    if (options.format === 'json') {
+      out = users.toString();
+    } else if (options.format === 'html') {
+      for (var type in users) {
+        out += '<div class="on-the-githubs-community">' + "\n";
+        out += "  " + '<h2>' + type + '</h2>' + "\n";
+        for (var i in users[type]) {
+          out += "    " + '<a target="_blank" rel="tooltip" data-placement="bottom" title="' + users[type][i].login + '" href="' + users[type][i].html_url + '" class="author">' + "\n";
+          out += '<img src="' + users[type][i].avatar_url + '&s=64" class="gravatar" />' + "\n";
+          out += '</a>' + "\n";
+        }
+        out += '</div>' + "\n";
       }
+    } else {
+      cli.error('Unsupported format: ' + options.format);
+      return;
     }
-    cli.ok('Done.');
+
+    // Display users
+    cli.output(out);
   });
 });

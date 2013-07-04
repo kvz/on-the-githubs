@@ -1,9 +1,17 @@
-on-the-githubs
-==============
+on-the-githubs [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][DependencyStatusIMGURL]][DependencyStatusURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
+===============
+[![Flattr][FlattrIMGURL]][FlattrURL]
 
-[![Build Status](https://travis-ci.org/kvz/on-the-githubs.png?branch=master)](https://travis-ci.org/kvz/on-the-githubs)
+[NPMIMGURL]:                https://badge.fury.io/js/cloudcmd.png
+[BuildStatusIMGURL]:        https://secure.travis-ci.org/kvz/on-the-githubs.png?branch=master
+[DependencyStatusIMGURL]:   https://gemnasium.com/kvz/on-the-githubs.png
+[FlattrIMGURL]:             http://api.flattr.com/button/flattr-badge-large.png
+[NPMURL]:                   //npmjs.org/package/on-the-githubs
+[BuildStatusURL]:           //travis-ci.org/kvz/on-the-githubs  "Build Status"
+[DependencyStatusURL]:      //gemnasium.com/kvz/on-the-githubs "Dependency Status"
+[FlattrURL]:                https://flattr.com/submit/auto?user_id=kvz&url=github.com/kvz/on-the-githubs&title=on-the-githubs&language=&tags=github&category=software
 
-Demo: http://kvz.github.io/on-the-githubs/#repos/kvz/nsfailover
+Demo: http://kvz.github.io/on-the-githubs/#kvz/nsfailover
 
 To grow an open-source community it helps if your site has an active overview of what's going on, and who
 are contributors.

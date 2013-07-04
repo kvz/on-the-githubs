@@ -87,6 +87,7 @@ Help:
 
 ## Todo
 
+ - [ ] Document CLI options
  - [ ] Caching in `~/.on-the-githubs`
  - [ ] Shipping automation
  - [-] Respect `reset` in https://api.github.com/rate_limit

@@ -23,7 +23,7 @@ Index an entire organisation:
 ```bash
 ./bin/ghcommunity-cache \
  --user tus \
- --repo tus.io,tus-resumable-upload-protocol \
+ --repo tus.io,tusd,tus-jquery-client,tus-ios-client,tus-android-client,tus-resumable-upload-protocol \
  --format html \
  --concurrency 1 \
  --tag '{{ghcommunity}}' \

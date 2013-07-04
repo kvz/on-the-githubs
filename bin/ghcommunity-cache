@@ -88,8 +88,8 @@ cli.main(function(args, options) {
         if (!cli.native.fs.existsSync(options.output)) {
           return cli.error('Instructed to replace ' + options.tag + ' in ' + options.output + ' but it does not exist');
         }
-        var buf = cli.native.fs.existsSync(options.output, {encoding: 'utf8'});
-        out = buf.replace(options.tag, out);
+        var buf = cli.native.fs.readFileSync(options.output);
+        out = (buf+'').replace(options.tag, out);
       }
 
       cli.native.fs.writeFileSync(options.output, out);

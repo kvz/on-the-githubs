@@ -67,8 +67,6 @@ Get all people involved with `kvz/nsfailver` and echo as json to `stdout`
 Index an entire organisation, read `test/about.md`, search it for the `{{ghcommunity}}` tag,
 replace it with the entire `tus` community, write it to `test/about-with-ghcommunity.md`, do this with `1` request at a time, to ensure the order of userpaths. Enable `debug`ging to see what's going on, because with the amount of API requests & GitHubs rate-limiting, this is going to take a while (the script automatically waits as to not have your IP banned by GitHub).
 
-![screen shot 2013-07-04 at 5 26 12 pm](https://f.cloud.github.com/assets/26752/750475/4ab48536-e4cc-11e2-9a69-f0c9e7c2765e.png)
-
 ```bash
 ./bin/ghcommunity-cache \
  --user tus \

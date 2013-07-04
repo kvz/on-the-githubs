@@ -1,6 +1,8 @@
 on-the-githubs
 ==============
 
+[![Build Status](https://travis-ci.org/kvz/on-the-githubs.png?branch=master)](https://travis-ci.org/kvz/on-the-githubs)
+
 Uses GitHub API3 to aggregate community activity of open source projects.
 
 Demo: http://kvz.github.io/on-the-githubs/#repos/kvz/nsfailover

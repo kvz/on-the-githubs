@@ -25,6 +25,9 @@ var agg          = onTheGithubs.aggregate(null, {
 // Overwrite getJson to avoid api call. have fixture_json
 agg.getJsonOriginal = agg.getJson;
 
+// Disable debug for cleaner test output
+agg.debug = function () {};
+
 var fixture_rate_limit_allow = {
   rate: {
     limit: 60,
@@ -36,7 +39,7 @@ var fixture_rate_limit_deny = {
   rate: {
     limit: 60,
     remaining: 2,
-    reset: 1372931865
+    reset: Math.floor((new Date()).getTime()/1000)+70
   }
 };
 
@@ -126,17 +129,17 @@ describe('aggregate', function(){
         cb(null, fixture_rate_limit_allow, task);
       };
       agg.rateLimiter(function(err, timeout) {
-        assert.equal(1000, timeout);
+        assert.equal(1, timeout);
       });
       agg.getJson = agg.getJsonOriginal;
     });
 
-    it('should deny by rate limit', function(){
+    it('should deny by rate limit and have a variable timeout higher than 60s', function(){
       agg.getJson = function(task, cb) {
         cb(null, fixture_rate_limit_deny, task);
       };
       agg.rateLimiter(function(err, timeout) {
-        assert.equal(61000, timeout);
+        assert.equal(true, timeout > 60);
       });
       agg.getJson = agg.getJsonOriginal;
     });

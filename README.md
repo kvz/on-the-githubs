@@ -12,13 +12,14 @@ Demo: http://kvz.github.io/on-the-githubs/#repos/kvz/nsfailover
 Because getting all contributor info involves many GitHub API calls, and it's
 rate-limited, we aggregate & cache the information.
 
-Run:
+Get all people involved with `kvz/nsfailver` and echo as json to `stdout`
 
 ```bash
-./bin/ghcommunity-cache --user kvz --repo nsfailover --format json --output > community.json
+./bin/ghcommunity-cache --user kvz --repo nsfailover --format json --output -
 ```
 
-Index an entire organisation:
+Index an entire organisation, read `test/about.md`, search it for the `{{ghcommunity}}` tag,
+replace it with the entire `tus` community, write it to `test/about-with-ghcommunity.md`, do this with `1` request at a time, to ensure the order of userpaths. Enable `debug`ging to see what's going on, because with the amount of API requests & GitHubs rate-limiting, this is going to take a while (the script automatically waits as to not have your IP banned by GitHub).
 
 ```bash
 ./bin/ghcommunity-cache \

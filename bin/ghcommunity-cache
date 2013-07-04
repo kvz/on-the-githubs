@@ -6,7 +6,7 @@ cli.parse({
   repo: ['r', 'Repositories (comma separated)', 'string'],
   user: ['u', 'User / Organisation', 'string'],
   format: ['f', 'Format', ['html', 'json'], 'html'],
-  input: ['i', 'Input', 'path', '-'],
+  input: ['i', 'Input', 'path'],
   output: ['o', 'Output', 'path', '-'],
   tag: ['t', 'Tag to replace in an existing html output file. E.g. {{ghcommunity}}', 'string', ''],
   concurrency: ['c', 'Concurrency. Higher than 1 may change order within user categories.', 'int', 1]
@@ -60,7 +60,7 @@ cli.main(function(args, options) {
     // Format snippet
     var bufSnippet = '';
     if (options.format === 'json') {
-      bufSnippet = users.toString();
+      bufSnippet = JSON.stringify(users);
     } else if (options.format === 'html') {
       for (var type in users) {
         bufSnippet += '<div class="on-the-githubs-community">' + "\n";
@@ -100,10 +100,11 @@ cli.main(function(args, options) {
 
     // Output
     if (options.output === '-') {
-      options.output = '/dev/stdout';
+      // /dev/stdout throws a `return binding.write(fd, buffer, offset, length, position);` on node v0.8.15
+      cli.output(bufOut);
+    } else {
+      cli.debug('Writing to ' + options.output);
+      cli.native.fs.writeFileSync(options.output, bufOut);
     }
-
-    cli.debug('Writing to ' + options.output);
-    cli.native.fs.writeFileSync(options.output, bufOut);
   });
 });

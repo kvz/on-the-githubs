@@ -2,6 +2,8 @@ var assert       = require('assert');
 var onTheGithubs = require('..');
 var agg          = onTheGithubs.aggregate(null, {
   concurrency: 2,
+  user: 'kvz',
+  repo: 'nsfailover,on-the-githubs',
   userpaths: {
     contributors: [
       // '/orgs/{user}/members',
@@ -99,9 +101,10 @@ describe('aggregate', function(){
   });
 
   describe('createTasks', function(){
-    it('should return 8 tasks', function(){
+    it('should return 12 tasks', function(){
       var tasks = agg.createTasks(agg.config.userpaths);
-      assert.equal(6, tasks.length);
+      assert.equal('https://api.github.com/repos/kvz/nsfailover/contributors?per_page=100', tasks[0].url);
+      assert.equal(12, tasks.length);
     });
   });
 

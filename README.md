@@ -13,7 +13,15 @@ rate-limited, we aggregate & cache the information.
 Run:
 
 ```bash
-./bin/contributor-cache -u kvz -r nsfailover --debug
+./bin/ghcommunity-cache --user kvz --repo nsfailover --format html > community.html
+```
+
+```bash
+./bin/ghcommunity-cache \
+ --user tus \
+ --repo tus.io,tusd,tus-jquery-client,tus-ios-client,tus-android-client,tus-resumable-upload-protocol \
+ --format html \
+> community.html
 ```
 
 ## Try the feed locally
@@ -26,6 +34,18 @@ node demo-server.js
 ```
 
 - Point your browser to http://127.0.0.1:8080
+
+## Update ghpages
+
+```bash
+make ghpages
+```
+
+## Test
+
+```bash
+make test
+```
 
 ## License
 

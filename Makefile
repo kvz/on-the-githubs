@@ -1,10 +1,11 @@
-ghpages_repo="tus/tus.github.io"
-ghpages_branch="master"
+ghpages_repo="kvz/on-the-githubs"
+ghpages_branch="gh-pages"
 
 all: publish
 
 publish:
 	rm -rf /tmp/publish-ghpages
+	mkdir -p /tmp/publish-ghpages
 
 	# Custom steps
 	mkdir -p /tmp/publish-ghpages/js
@@ -19,7 +20,7 @@ publish:
 
 	cd /tmp/publish-ghpages \
 	 && git init && git add . \
-	 && git commit -m "Update site by $${USER}" \
+	 && git commit -m "Update $(ghpages_repo) site by $${USER}" \
 	 && git remote add origin git@github.com:$(ghpages_repo).git \
 	 && git push origin master:refs/heads/$(ghpages_branch) --force
 

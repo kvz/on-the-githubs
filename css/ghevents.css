@@ -44,18 +44,20 @@
   margin-right:3px;
 }
 .on-the-githubs-events > li:hover .commits { display:block; }
-img.gravatar {
+
+.on-the-githubs-events img.gravatar {
   border-radius:10px;
   width:20px;
   height:20px;
 }
-div.community a {
+
+div.on-the-githubs-community a {
   display:inline-block;
   width:80px;
   height:80px;
   margin:12px;
 }
-div.community img.gravatar {
+div.on-the-githubs-community img {
   border-radius:80px;
   width:80px;
   height:80px;

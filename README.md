@@ -28,7 +28,7 @@ replace it with the entire `tus` community, write it to `test/about-with-ghcommu
  --format html \
  --concurrency 1 \
  --input test/about.md \
- --tag '{{ghcommunity}}' \
+ --tag '<div class="on-the-githubs-community" />' \
  --output test/about-with-ghcommunity.md \
  --debug
 ```

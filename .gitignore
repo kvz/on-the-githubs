@@ -14,7 +14,9 @@ results
 
 npm-debug.log
 node_modules/
+build/
 
-test/about-with-community.md
+*.min.css
+*.min.js
 
 .DS_Store

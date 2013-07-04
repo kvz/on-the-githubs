@@ -27,9 +27,8 @@ This project helps to address those things with 2 independent subprojects:
 a jquery plugin for a near-realtime overview of events in 1 project or organisation. does not require any buildsteps or setup.
 
 
-## ghevents
+## ghevents examples
 
-### Example
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
@@ -46,7 +45,7 @@ a jquery plugin for a near-realtime overview of events in 1 project or organisat
 	</script>
 
 
-### Development
+## ghevents development
 
 For local development, here's how to run the repo-included demo:
 
@@ -57,10 +56,7 @@ node demo-server.js
 
 - Point your browser to http://127.0.0.1:8080
 
-
-## ghcommunity
-
-### Examples
+## ghcommunity examples
 
 Get all people involved with `kvz/nsfailver` and echo as json to `stdout`
 
@@ -70,6 +66,8 @@ Get all people involved with `kvz/nsfailver` and echo as json to `stdout`
 
 Index an entire organisation, read `test/about.md`, search it for the `{{ghcommunity}}` tag,
 replace it with the entire `tus` community, write it to `test/about-with-ghcommunity.md`, do this with `1` request at a time, to ensure the order of userpaths. Enable `debug`ging to see what's going on, because with the amount of API requests & GitHubs rate-limiting, this is going to take a while (the script automatically waits as to not have your IP banned by GitHub).
+
+![screen shot 2013-07-04 at 5 26 12 pm](https://f.cloud.github.com/assets/26752/750475/4ab48536-e4cc-11e2-9a69-f0c9e7c2765e.png)
 
 ```bash
 ./bin/ghcommunity-cache \
@@ -88,6 +86,13 @@ Help:
 ```bash
 ./bin/ghcommunity-cache -h
 ```
+
+## Todo
+
+ - [ ] Caching in `~/.on-the-githubs`
+ - [ ] Shipping automation
+ - [ ] Respect `reset` in https://api.github.com/rate_limit
+ - [-] Minifying
 
 ## License
 

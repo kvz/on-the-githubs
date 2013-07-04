@@ -45,6 +45,19 @@ a jquery plugin for a near-realtime overview of events in 1 project or organisat
 		$('.on-the-githubs-events').ghevents();
 	</script>
 
+
+### Development
+
+For local development, here's how to run the repo-included demo:
+
+```bash
+npm install --dev
+node demo-server.js
+```
+
+- Point your browser to http://127.0.0.1:8080
+
+
 ## ghcommunity
 
 ### Examples
@@ -74,32 +87,6 @@ Help:
 
 ```bash
 ./bin/ghcommunity-cache -h
-```
-
-## Try the feed locally
-
-For local development, here's how to run the repo-included demo:
-
-```bash
-npm install --dev
-node demo-server.js
-```
-
-- Point your browser to http://127.0.0.1:8080
-
-
-## on-the-github developing
-
-### Update ghpages
-
-```bash
-make publish
-```
-
-### Test
-
-```bash
-make test
 ```
 
 ## License

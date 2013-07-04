@@ -1,7 +1,22 @@
 var assert       = require('assert');
 var onTheGithubs = require('..');
 var agg          = onTheGithubs.aggregate(null, {
-  concurrency: 2
+  concurrency: 2,
+  userpaths: {
+    contributors: [
+      // '/orgs/{user}/members',
+      '/repos/{user}/{repo}/contributors',
+      '/repos/{user}/{repo}/collaborators'
+    ],
+    collaborators: [
+      '/repos/{user}/{repo}/issues/comments',
+      '/repos/{user}/{repo}/issues'
+    ],
+    watchers: [
+      '/repos/{user}/{repo}/subscribers',
+      '/repos/{user}/{repo}/stargazers'
+    ]
+  }
 });
 
 
@@ -27,7 +42,7 @@ var fixture_task = {
   url: 'https://api.github.com/repos/kvz/nsfailover/contributors?per_page=100',
   path: '/repos/kvz/nsfailover/contributors',
   type: 'contributors',
-  owner: 'kvz',
+  user: 'kvz',
   repo: 'nsfailover'
 };
 
@@ -41,7 +56,7 @@ var fixture_json = [{
   followers_url: "https://api.github.com/users/tim-kos/followers",
   following_url: "https://api.github.com/users/tim-kos/following{/other_user}",
   gists_url: "https://api.github.com/users/tim-kos/gists{/gist_id}",
-  starred_url: "https://api.github.com/users/tim-kos/starred{/owner}{/repo}",
+  starred_url: "https://api.github.com/users/tim-kos/starred{/user}{/repo}",
   subscriptions_url: "https://api.github.com/users/tim-kos/subscriptions",
   organizations_url: "https://api.github.com/users/tim-kos/orgs",
   repos_url: "https://api.github.com/users/tim-kos/repos",
@@ -58,7 +73,7 @@ var fixture_json = [{
   followers_url: "https://api.github.com/users/kvz/followers",
   following_url: "https://api.github.com/users/kvz/following{/other_user}",
   gists_url: "https://api.github.com/users/kvz/gists{/gist_id}",
-  starred_url: "https://api.github.com/users/kvz/starred{/owner}{/repo}",
+  starred_url: "https://api.github.com/users/kvz/starred{/user}{/repo}",
   subscriptions_url: "https://api.github.com/users/kvz/subscriptions",
   organizations_url: "https://api.github.com/users/kvz/orgs",
   repos_url: "https://api.github.com/users/kvz/repos",
@@ -66,22 +81,6 @@ var fixture_json = [{
   received_events_url: "https://api.github.com/users/kvz/received_events",
   type: "User"
 }];
-
-var fixture_userpaths = {
-  contributors: [
-    // '/orgs/{owner}/members',
-    '/repos/{owner}/{repo}/contributors',
-    '/repos/{owner}/{repo}/collaborators'
-  ],
-  collaborators: [
-    '/repos/{owner}/{repo}/issues/comments',
-    '/repos/{owner}/{repo}/issues'
-  ],
-  watchers: [
-    '/repos/{owner}/{repo}/subscribers',
-    '/repos/{owner}/{repo}/stargazers'
-  ]
-};
 
 describe('aggregate', function(){
   describe('grepUsers', function(){
@@ -101,7 +100,7 @@ describe('aggregate', function(){
 
   describe('createTasks', function(){
     it('should return 8 tasks', function(){
-      var tasks = agg.createTasks('https://api.github.com', 'kvz', 'nsfailover', fixture_userpaths);
+      var tasks = agg.createTasks(agg.config.userpaths);
       assert.equal(6, tasks.length);
     });
   });

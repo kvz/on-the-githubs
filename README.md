@@ -13,7 +13,7 @@ rate-limited, we aggregate & cache the information.
 Run:
 
 ```bash
-./bin/contributor-cache -o kvz -r nsfailover --debug
+./bin/contributor-cache -u kvz -r nsfailover --debug
 ```
 
 ## Try the feed locally

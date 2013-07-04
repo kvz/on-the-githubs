@@ -13,15 +13,25 @@ rate-limited, we aggregate & cache the information.
 Run:
 
 ```bash
-./bin/ghcommunity-cache --user kvz --repo nsfailover --format html > community.html
+./bin/ghcommunity-cache --user kvz --repo nsfailover --format json --output > community.json
 ```
+
+Index an entire organisation:
 
 ```bash
 ./bin/ghcommunity-cache \
  --user tus \
  --repo tus.io,tusd,tus-jquery-client,tus-ios-client,tus-android-client,tus-resumable-upload-protocol \
  --format html \
-> community.html
+ --concurrency 1 \
+ --output community.html \
+ --debug
+```
+
+Help:
+
+```bash
+./bin/ghcommunity-cache -h
 ```
 
 ## Try the feed locally

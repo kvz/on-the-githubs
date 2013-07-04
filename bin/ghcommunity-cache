@@ -6,7 +6,8 @@ cli.parse({
   repo: ['r', 'Repositories (comma separated)', 'string'],
   user: ['u', 'User / Organisation', 'string'],
   format: ['f', 'Format', ['html', 'json'], 'html'],
-  output: ['o', 'Output', 'path', '-']
+  output: ['o', 'Output', 'path', '-'],
+  concurrency: ['c', 'Concurrency. Higher than 1 may change order within user categories.', 'int', 1]
 });
 
 cli.main(function(args, options) {
@@ -20,7 +21,7 @@ cli.main(function(args, options) {
   var config = {
     service: 'https://api.github.com',
     paginate: true,
-    concurrency: 6,
+    concurrency: 1,
     squash: true,
     userpaths: {
       contributors: [
@@ -39,8 +40,9 @@ cli.main(function(args, options) {
     }
   };
 
-  config.user = options.user;
-  config.repo = options.repo;
+  config.user        = options.user;
+  config.repo        = options.repo;
+  config.concurrency = options.concurrency;
 
   var agg = onTheGithubs.aggregate(cli, config);
   agg.execute(function (err, users) {

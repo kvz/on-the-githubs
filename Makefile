@@ -13,7 +13,7 @@ publish:
 	cp js/jquery.js /tmp/publish-ghpages/js/
 	cp js/jquery.timeago.js /tmp/publish-ghpages/js/
 	cp js/jquery.ghevents.js /tmp/publish-ghpages/js/
-	cp css/ghevents.css /tmp/publish-ghpages/css/
+	cp css/on-the-githubs.css /tmp/publish-ghpages/css/
 	./bin/ghcommunity-cache \
 	 --user kvz \
 	 --repo nsfailover \

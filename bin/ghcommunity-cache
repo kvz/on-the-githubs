@@ -48,17 +48,20 @@ cli.main(function(args, options) {
       return cli.error(err);
     }
 
+    // Format
     var out = '';
     if (options.format === 'json') {
       out = users.toString();
     } else if (options.format === 'html') {
       for (var type in users) {
         out += '<div class="on-the-githubs-community">' + "\n";
-        out += "  " + '<h2>' + type + '</h2>' + "\n";
-        for (var i in users[type]) {
-          out += "    " + '<a target="_blank" rel="tooltip" data-placement="bottom" title="' + users[type][i].login + '" href="' + users[type][i].html_url + '" class="author">' + "\n";
-          out += '<img src="' + users[type][i].avatar_url + '&s=64" class="gravatar" />' + "\n";
-          out += '</a>' + "\n";
+        if (users[type].length) {
+          out += "  " + '<h2>' + type + ' (' + users[type].length + ')</h2>' + "\n";
+          for (var i in users[type]) {
+            out += "  " + '<a target="_blank" rel="tooltip" data-placement="bottom" title="' + users[type][i].login + '" href="' + users[type][i].html_url + '">';
+            out += '<img src="' + users[type][i].avatar_url + '&s=64" />';
+            out += '</a>' + "\n";
+          }
         }
         out += '</div>' + "\n";
       }
@@ -67,7 +70,11 @@ cli.main(function(args, options) {
       return;
     }
 
-    // Display users
-    cli.output(out);
+    // Output
+    if (options.output === '-') {
+      cli.output(out);
+    } else {
+      cli.native.fs.writeFileSync(options.output, out);
+    }
   });
 });

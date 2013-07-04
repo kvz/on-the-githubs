@@ -1,9 +1,26 @@
 var assert       = require('assert');
 var onTheGithubs = require('..');
-var agg          = onTheGithubs.aggregate(null, {});
+var agg          = onTheGithubs.aggregate(null, {
+  concurrency: 2
+});
+
+
 // Overwrite getJson to avoid api call. have fixture_json
-agg.getJson = function(task, cb) {
-  cb(null, fixture_json, task);
+agg.getJsonOriginal = agg.getJson;
+
+var fixture_rate_limit_allow = {
+  rate: {
+    limit: 60,
+    remaining: 60,
+    reset: 1372931865
+  }
+};
+var fixture_rate_limit_deny = {
+  rate: {
+    limit: 60,
+    remaining: 2,
+    reset: 1372931865
+  }
 };
 
 var fixture_task = {
@@ -91,9 +108,35 @@ describe('aggregate', function(){
 
   describe('doTask', function(){
     it('should find users', function(){
+      agg.getJson = function(task, cb) {
+        cb(null, fixture_json, task);
+      };
       agg.doTask(null, fixture_task, function(err, users, task) {
         assert.equal(1, users.length);
       });
+      agg.getJson = agg.getJsonOriginal;
+    });
+  });
+
+  describe('rateLimiter', function(){
+    it('should allow by rate limit', function(){
+      agg.getJson = function(task, cb) {
+        cb(null, fixture_rate_limit_allow, task);
+      };
+      agg.rateLimiter(function(err, timeout) {
+        assert.equal(1000, timeout);
+      });
+      agg.getJson = agg.getJsonOriginal;
+    });
+
+    it('should deny by rate limit', function(){
+      agg.getJson = function(task, cb) {
+        cb(null, fixture_rate_limit_deny, task);
+      };
+      agg.rateLimiter(function(err, timeout) {
+        assert.equal(61000, timeout);
+      });
+      agg.getJson = agg.getJsonOriginal;
     });
   });
 });

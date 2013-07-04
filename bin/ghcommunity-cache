@@ -6,6 +6,7 @@ cli.parse({
   repo: ['r', 'Repositories (comma separated)', 'string'],
   user: ['u', 'User / Organisation', 'string'],
   format: ['f', 'Format', ['html', 'json'], 'html'],
+  input: ['i', 'Input', 'path', '-'],
   output: ['o', 'Output', 'path', '-'],
   tag: ['t', 'Tag to replace in an existing html output file. E.g. {{ghcommunity}}', 'string', ''],
   concurrency: ['c', 'Concurrency. Higher than 1 may change order within user categories.', 'int', 1]
@@ -25,22 +26,22 @@ cli.main(function(args, options) {
     concurrency: 1,
     squash: true,
     descriptions: {
-      contributors: 'People coding',
-      collaborators: 'People commenting',
-      watchers: 'People watching'
+      Contributors: 'People coding',
+      Collaborators: 'People commenting',
+      Watchers: 'People watching'
     },
     userpaths: {
-      contributors: [
+      Contributors: [
         // '/orgs/{user}/members',
         '/repos/{user}/{repo}/contributors',
         '/repos/{user}/{repo}/collaborators'
       ],
-      collaborators: [
+      Collaborators: [
         '/repos/{user}/{repo}/issues/comments',
         '/repos/{user}/{repo}/issues'
       ],
-      watchers: [
-        '/repos/{user}/{repo}/subscribers',
+      Watchers: [
+        // '/repos/{user}/{repo}/subscribers',
         '/repos/{user}/{repo}/stargazers'
       ]
     }
@@ -56,43 +57,53 @@ cli.main(function(args, options) {
       return cli.error(err);
     }
 
-    // Format
-    var out = '';
+    // Format snippet
+    var bufSnippet = '';
     if (options.format === 'json') {
-      out = users.toString();
+      bufSnippet = users.toString();
     } else if (options.format === 'html') {
       for (var type in users) {
-        out += '<div class="on-the-githubs-community">' + "\n";
+        bufSnippet += '<div class="on-the-githubs-community">' + "\n";
         if (users[type].length) {
-          out += "  " + '<h2>' + type + ' (' + users[type].length + ')</h2>' + "\n";
+          bufSnippet += "  " + '<h2>' + type + ' (' + users[type].length + ')</h2>' + "\n";
           if (config.descriptions && config.descriptions[type]) {
-            out += "  " + '<p>' + config.descriptions[type] + '</p>' + "\n";
+            bufSnippet += "  " + '<p>' + config.descriptions[type] + '</p>' + "\n";
           }
           for (var i in users[type]) {
-            out += "  " + '<a target="_blank" rel="tooltip" data-placement="bottom" title="' + users[type][i].login + '" href="' + users[type][i].html_url + '">';
-            out += '<img src="' + users[type][i].avatar_url + '&s=64" />';
-            out += '</a>' + "\n";
+            bufSnippet += "  " + '<a target="_blank" rel="tooltip" data-placement="bottom" title="' + users[type][i].login + '" href="' + users[type][i].html_url + '">';
+            bufSnippet += '<img src="' + users[type][i].avatar_url + '&s=64" />';
+            bufSnippet += '</a>' + "\n";
           }
         }
-        out += '</div>' + "\n";
+        bufSnippet += '</div>' + "\n";
       }
     } else {
       return cli.error('Unsupported format: ' + options.format);
     }
 
+    // Optionally get input
+    var bufIn = '';
+    if (options.input === '-') {
+      options.input = '/dev/stdin';
+    }
+    if (options.input) {
+      bufIn = cli.native.fs.readFileSync(options.input).toString();
+    }
+
+    // Place snippet in input
+    var bufOut = '';
+    if (options.tag) {
+      bufOut = bufIn.replace(options.tag, bufSnippet);
+    } else {
+      bufOut = bufIn + bufSnippet;
+    }
+
     // Output
     if (options.output === '-') {
-      cli.output(out);
-    } else {
-      if (options.tag) {
-        if (!cli.native.fs.existsSync(options.output)) {
-          return cli.error('Instructed to replace ' + options.tag + ' in ' + options.output + ' but it does not exist');
-        }
-        var buf = cli.native.fs.readFileSync(options.output);
-        out = (buf+'').replace(options.tag, out);
-      }
-
-      cli.native.fs.writeFileSync(options.output, out);
+      options.output = '/dev/stdout';
     }
+
+    cli.debug('Writing to ' + options.output);
+    cli.native.fs.writeFileSync(options.output, bufOut);
   });
 });

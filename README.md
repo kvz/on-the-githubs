@@ -26,8 +26,9 @@ Index an entire organisation:
  --repo tus.io,tusd,tus-jquery-client,tus-ios-client,tus-android-client,tus-resumable-upload-protocol \
  --format html \
  --concurrency 1 \
+ --input test/about.md \
  --tag '{{ghcommunity}}' \
- --output test/about.md \
+ --output test/about-with-ghcommunity.md \
  --debug
 ```
 

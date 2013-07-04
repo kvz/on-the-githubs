@@ -3,14 +3,43 @@ on-the-githubs
 
 [![Build Status](https://travis-ci.org/kvz/on-the-githubs.png?branch=master)](https://travis-ci.org/kvz/on-the-githubs)
 
-Uses GitHub API3 to aggregate community activity of open source projects.
-
 Demo: http://kvz.github.io/on-the-githubs/#repos/kvz/nsfailover
 
-## Build contributor cache
+To grow an open-source community it helps if your site has an active overview of what's going on, and who
+are contributors.
 
-Because getting all contributor info involves many GitHub API calls, and it's
-rate-limited, we aggregate & cache the information.
+The GitHub API3 is wonderful and can provide all the information we need.
+
+However you may hit rate-limiters, or find it hard / have no time to integrate the data into your website.
+
+This project helps to address those things with 2 independent subprojects:
+
+- **ghcommunity** - downloads all involved community members, saves it as json or html, so you can include it in your build procedure, or store it on s3 and then include in your site.
+- **ghevents**
+a jquery plugin for a near-realtime overview of events in 1 project or organisation. does not require any buildsteps or setup.
+
+
+## ghevents
+
+### Example
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<link href="//kvz.github.io/on-the-githubs/css/on-the-githubs.css" rel="stylesheet" />
+	<div class="on-the-githubs-events" data-event-source="repos/kvz/nsfailover">
+	Loading...
+	</div>
+
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.timeago.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.ghevents.js"></script>
+
+	<script type="text/javascript">
+		$('.on-the-githubs-events').ghevents();
+	</script>
+
+## ghcommunity
+
+### Examples
 
 Get all people involved with `kvz/nsfailver` and echo as json to `stdout`
 
@@ -27,9 +56,9 @@ replace it with the entire `tus` community, write it to `test/about-with-ghcommu
  --repo tus.io,tusd,tus-jquery-client,tus-ios-client,tus-android-client,tus-resumable-upload-protocol \
  --format html \
  --concurrency 1 \
- --input test/about.md \
+ --input demo.html \
  --tag '<div class="on-the-githubs-community" />' \
- --output test/about-with-ghcommunity.md \
+ --output demo-with-community.html \
  --debug
 ```
 
@@ -50,13 +79,16 @@ node demo-server.js
 
 - Point your browser to http://127.0.0.1:8080
 
-## Update ghpages
+
+## on-the-github developing
+
+### Update ghpages
 
 ```bash
-make ghpages
+make publish
 ```
 
-## Test
+### Test
 
 ```bash
 make test

@@ -14,7 +14,15 @@ publish:
 	cp js/jquery.timeago.js /tmp/publish-ghpages/js/
 	cp js/jquery.ghevents.js /tmp/publish-ghpages/js/
 	cp css/ghevents.css /tmp/publish-ghpages/css/
-	cp demo.html /tmp/publish-ghpages/index.html
+	./bin/ghcommunity-cache \
+	 --user kvz \
+	 --repo nsfailover \
+	 --format html \
+	 --concurrency 1 \
+	 --input demo.html \
+	 --tag '<div class="on-the-githubs-community" />' \
+	 --output /tmp/publish-ghpages/index.html \
+	 --debug
 
 	echo 'This repo is just a deploy target. Do not edit. You changes will be lost.' > /tmp/publish-ghpages/README.md
 

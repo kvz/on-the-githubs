@@ -36,7 +36,7 @@
 
     var options = {};
     if (window.location.hash) {
-      options['event-source'] = window.location.hash.substr(1);
+      options['event-source'] = window.location.hash.replace('#', 'repos/');
     }
     $('.on-the-githubs-events').ghevents(options);
   </script>

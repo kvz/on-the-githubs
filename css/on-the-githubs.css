@@ -1,1 +1,64 @@
-.on-the-githubs-events{list-style-type:none;padding:0;margin:0 0 0 5px}.on-the-githubs-events img{float:left;margin:0}.on-the-githubs-events p{display:inline-block;float:left;margin:0;width:550px}.on-the-githubs-events abbr.timeago{position:absolute;right:0;float:left;text-align:right}.on-the-githubs-events>li{border-bottom:1px solid #eee;padding:5px 0;clear:both;position:relative}.on-the-githubs-events>li:last-child{border-bottom:0}.on-the-githubs-events .gravatar{margin-right:7px}.on-the-githubs-events .commits{display:none;clear:both;padding-top:5px}.on-the-githubs-events .commits li{list-style-type:none;margin-left:10px;font-size:12px}.on-the-githubs-events .commits li a{display:inline-block;width:50px;text-align:right;margin-right:3px}.on-the-githubs-events>li:hover .commits{display:block}.on-the-githubs-events img.gravatar{border-radius:10px;width:20px;height:20px}.on-the-githubs-community a{display:inline-block;width:80px;height:80px;margin:12px}.on-the-githubs-community img{border-radius:80px;width:80px;height:80px}
+.on-the-githubs-events {
+  list-style-type:none;
+  padding:0;
+  margin:0 0 0 5px;
+}
+.on-the-githubs-events img {
+  float:left;
+  margin:0;
+}
+.on-the-githubs-events p {
+  display:inline-block;
+  float:left;
+  margin:0;
+  width:550px;
+}
+.on-the-githubs-events abbr.timeago {
+  position:absolute;
+  right:0;
+  float:left;
+  text-align:right;
+}
+.on-the-githubs-events > li {
+  border-bottom:1px solid #eee;
+  padding:5px 0;
+  clear:both;
+  position:relative;
+}
+.on-the-githubs-events > li:last-child { border-bottom:none; }
+.on-the-githubs-events .gravatar { margin-right:7px; }
+.on-the-githubs-events .commits {
+  display:none;
+  clear:both;
+  padding-top:5px;
+}
+.on-the-githubs-events .commits li {
+  list-style-type:none;
+  margin-left:10px;
+  font-size:12px;
+}
+.on-the-githubs-events .commits li a {
+  display:inline-block;
+  width:50px;
+  text-align:right;
+  margin-right:3px;
+}
+.on-the-githubs-events > li:hover .commits { display:block; }
+
+.on-the-githubs-events img.gravatar {
+  border-radius:10px;
+  width:20px;
+  height:20px;
+}
+
+.on-the-githubs-community a {
+  display:inline-block;
+  width:80px;
+  height:80px;
+  margin:12px;
+}
+.on-the-githubs-community img {
+  border-radius:80px;
+  width:80px;
+  height:80px;
+}

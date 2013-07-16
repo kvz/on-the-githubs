@@ -1,27 +1,39 @@
-ghpages_repo="kvz/on-the-githubs"
+ghpages_user="kvz"
+ghpages_repo="on-the-githubs"
 ghpages_branch="gh-pages"
 
-all: test publish
+all: build community test publish
 
 test:
 	./node_modules/.bin/mocha --reporter list
 
-publish:
-	rm -rf build
-	mkdir -p build
+build:
+	rm -rf build/*
+	mkdir -p build build/js build/css
 
-	# Custom steps
-	mkdir -p build/js
-	mkdir -p build/css
-	node ./node_modules/yuicompressor/nodejs/cli.js --type js -o js/jquery.ghevents.min.js js/jquery.timeago.js js/jquery.ghevents.js
-	cp js/jquery.js build/js/
-	cp js/jquery.timeago.js build/js/
-	cp js/jquery.ghevents.js build/js/
-	cp js/jquery.ghevents.min.js build/js/
-	node ./node_modules/yuicompressor/nodejs/cli.js --type css -o css/on-the-githubs.css css/on-the-githubs.min.css
-	node ./node_modules/minifier/index.js css/on-the-githubs.css --output css/on-the-githubs.min.css
-	cp css/on-the-githubs.css build/css/
-	cp css/on-the-githubs.min.css build/css/
+	cat \
+	 js/jquery.timeago.js \
+	 js/jquery.ghevents.js \
+	> build/js/jquery.ghevents.concat.js
+
+	node ./node_modules/yuicompressor/nodejs/cli.js -o \
+	 build/js/jquery.ghevents.min.js \
+	 build/js/jquery.ghevents.concat.js \
+	--type js
+
+	cp \
+	 js/jquery.js \
+	 js/jquery.timeago.js \
+	build/js/
+
+	node ./node_modules/yuicompressor/nodejs/cli.js -o \
+	 build/css/on-the-githubs.min.css \
+	 css/on-the-githubs.css \
+	--type css
+
+	echo 'This repo is just a deploy target. Do not edit. You changes will be lost.' > build/README.md
+
+community: build
 	./bin/ghcommunity-cache \
 	 --user kvz \
 	 --repo nsfailover \
@@ -32,16 +44,15 @@ publish:
 	 --output build/index.html \
 	 --debug
 
-	echo 'This repo is just a deploy target. Do not edit. You changes will be lost.' > build/README.md
+publish:
+	rm -rf build/.git ||true
+	cd build && git init && git add .
+	cd build && git commit -m "Update $(ghpages_user)/$(ghpages_repo) site by $${USER}"
+	cd build && git remote add origin git@github.com:$(ghpages_user)/$(ghpages_repo).git
+	cd build && git push origin master:refs/heads/$(ghpages_branch) --force
 
-	cd build \
-	 && git init && git add . \
-	 && git commit -m "Update $(ghpages_repo) site by $${USER}" \
-	 && git remote add origin git@github.com:$(ghpages_repo).git \
-	 && git push origin master:refs/heads/$(ghpages_branch) --force
+	echo "Published at https://$(ghpages_user).github.io/$(ghpages_repo)"
 
-	rm -rf build
-
-.PHONY: publish test
+.PHONY: build community test publish
 
 

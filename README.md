@@ -30,15 +30,12 @@ a jquery plugin for a near-realtime overview of events in 1 project or organisat
 ## ghevents examples
 
 
+	<link href="//kvz.github.io/on-the-githubs/css/on-the-githubs.min.css" rel="stylesheet" />
+
+	<div class="on-the-githubs-events" data-event-source="repos/kvz/nsfailover">Loading...</div>
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-	<link href="//kvz.github.io/on-the-githubs/css/on-the-githubs.css" rel="stylesheet" />
-	<div class="on-the-githubs-events" data-event-source="repos/kvz/nsfailover">
-	Loading...
-	</div>
-
-    <script src="//kvz.github.io/on-the-githubs/js/jquery.timeago.js"></script>
-    <script src="//kvz.github.io/on-the-githubs/js/jquery.ghevents.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.ghevents.min.js"></script>
 
 	<script type="text/javascript">
 		$('.on-the-githubs-events').ghevents();
@@ -90,7 +87,8 @@ Help:
  - [ ] Document CLI options
  - [ ] Caching in `~/.on-the-githubs`
  - [ ] Shipping automation
- - [ ] Fix up timeago on tus.io
+ - [ ] Switch to Grunt for minifying
+ - [-] Fix up timeago on tus.io
  - [-] Respect `reset` in https://api.github.com/rate_limit
  - [-] Minifying
 

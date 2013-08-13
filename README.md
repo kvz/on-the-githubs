@@ -85,12 +85,12 @@ Help:
 ## Todo
 
  - [ ] Document CLI options
- - [ ] Caching in `~/.on-the-githubs`
- - [ ] Shipping automation
- - [-] Switch to Grunt for minifying
- - [-] Fix up timeago on tus.io
- - [-] Respect `reset` in https://api.github.com/rate_limit
- - [-] Minifying
+ - [x] Caching in `~/.on-the-githubs`
+ - [x] Shipping automation
+ - [x] Switch to Grunt for minifying
+ - [x] Fix up timeago on tus.io
+ - [x] Respect `reset` in https://api.github.com/rate_limit
+ - [x] Minifying
 
 ## License
 

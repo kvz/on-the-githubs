@@ -23,6 +23,7 @@ community: build
 	 --debug
 
 publish:
+	grunt bump
 	rm -rf build/.git ||true
 	cd build && git init && git add .
 	cd build && git commit -m "Update $(ghpages_user)/$(ghpages_repo) site by $${USER}"

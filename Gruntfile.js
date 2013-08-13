@@ -51,13 +51,29 @@ module.exports = function(grunt) {
     clean: [
       'build/js', 
       'build/css', 
-    ]
+    ],
+    bump: {
+      options: {
+        files: ['package.json'],
+        updateConfigs: [],
+        commit: true,
+        commitMessage: 'Release v%VERSION%',
+        commitFiles: ['package.json'], // '-a' for all files
+        createTag: true,
+        tagName: 'v%VERSION%',
+        tagMessage: 'Version %VERSION%',
+        push: true,
+        pushTo: 'origin',
+        gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d' // options to use with '$ git describe'
+      }
+    }
   }); // end of configuring the grunt task
 
   // Load the plugins
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-bump');
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'cssmin', 'uglify']);

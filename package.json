@@ -20,7 +20,8 @@
     "grunt-contrib-cssmin": "~0.6.1",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-bump": "0.0.11"
+    "grunt-bump": "0.0.11",
+    "grunt-release": "~0.5.1"
   },
   "keywords": [
     "github",

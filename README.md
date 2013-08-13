@@ -13,22 +13,25 @@ on-the-githubs [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][Depende
 
 Demo: http://kvz.github.io/on-the-githubs/#kvz/nsfailover
 
-To grow an open-source community it helps if your site has an active overview of what's going on, and who
-are contributors.
+To grow an open-source community it helps if your site has an active overview of what's going on and who
+is contributing.
 
-The GitHub API3 is wonderful and can provide all the information we need.
+The GitHub API3 provides all the information we need, but you may hit rate-limiters, or find it hard / have no time to embed this data into your website.
 
-However you may hit rate-limiters, or find it hard / have no time to integrate the data into your website.
+This project aims to make it deadsimple to add community info & activity feeds. It's split
+into two subprojects:
 
-This project helps to address those things with 2 independent subprojects:
-
-- **ghcommunity** - downloads all involved community members, saves it as json or html, so you can include it in your build procedure, or store it on s3 and then include in your site.
+- **ghcommunity** - Downloads all involved community members, saves it as json or html so you can include it in your build procedure.
 - **ghevents**
-a jquery plugin for a near-realtime overview of events in 1 project or organisation. does not require any buildsteps or setup.
+A jquery plugin for a near-realtime overview of events in 1 project or organisation. Does not require any buildsteps or setup, just add a few lines of code to your project's page.
 
 
-## ghevents examples
+## ghevents example
 
+Demo: http://kvz.github.io/on-the-githubs/#kvz/nsfailover
+Or your own: http://kvz.github.io/on-the-githubs/#`<user>`/`<repo>`
+
+To embed this into your site, add a few lines of code:
 
 	<link href="//kvz.github.io/on-the-githubs/css/on-the-githubs.min.css" rel="stylesheet" />
 
@@ -41,6 +44,8 @@ a jquery plugin for a near-realtime overview of events in 1 project or organisat
 		$('.on-the-githubs-events').ghevents();
 	</script>
 
+Don't forget to change the `data-event-source` to repos/`<user>`/`<repo>`.
+
 
 ## ghevents development
 
@@ -48,6 +53,7 @@ For local development, here's how to run the repo-included demo:
 
 ```bash
 npm install --dev
+make build
 node demo-server.js
 ```
 
@@ -61,7 +67,7 @@ Get all people involved with `kvz/nsfailver` and echo as json to `stdout`
 ./bin/ghcommunity-cache --user kvz --repo nsfailover --format json --output -
 ```
 
-Index an entire organisation, read `test/about.md`, search it for the `{{ghcommunity}}` tag,
+Index an entire organization, read `test/about.md`, search it for the `{{ghcommunity}}` tag,
 replace it with the entire `tus` community, write it to `test/about-with-ghcommunity.md`, do this with `1` request at a time, to ensure the order of userpaths. Enable `debug`ging to see what's going on, because with the amount of API requests & GitHubs rate-limiting, this is going to take a while (the script automatically waits as to not have your IP banned by GitHub).
 
 ```bash
@@ -82,15 +88,42 @@ Help:
 ./bin/ghcommunity-cache -h
 ```
 
-## Todo
+## Integrate ghcommunity
 
- - [ ] Document CLI options
- - [x] Caching in `~/.on-the-githubs`
- - [x] Shipping automation
- - [x] Switch to Grunt for minifying
- - [x] Fix up timeago on tus.io
- - [x] Respect `reset` in https://api.github.com/rate_limit
- - [x] Minifying
+Let's say your site is now built with Jekyll into `./_site`.
+You have an `about.md` that you want to add community faces to.
+
+First, let's make on-the-githubs a dependency:
+
+```bash
+[ -d node_modules ] || mkdir node_modules
+npm install on-the-githubs --save
+```
+
+Now add something like this to a `Makefile`:
+
+```bash
+community:
+	node_modules/on-the-githubs/bin/ghcommunity-cache \
+	 --user tus \
+	 --repo tusd,tus-jquery-client \
+	 --format html \
+	 --concurrency 1 \
+	 --input _site/about.html \
+	 --tag '<p>replaced-by-on-the-githubs</p>' \
+	 --output _site/about.html \
+	 --debug
+```
+
+Now if you type `make community` after `jekyll build`, on-the-githubs will look for the
+`<p>replaced-by-on-the-githubs</p>` placeholder, and replace it with all the involved GitHub
+profiles.
+
+By default, `ghcommunity-cache` caches to `~/.on-the-githubs/` to avoid rate-limiters.
+
+## Requirements
+
+- Node 0.8+
 
 ## License
 

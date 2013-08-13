@@ -42,6 +42,8 @@ To embed this into your site, add a few lines of code:
 
 	<script type="text/javascript">
 		$('.on-the-githubs-events').ghevents();
+		// If you use bootstrap and want to enable tooltips
+		// $('a[rel]').tooltip();
 	</script>
 
 Don't forget to change the `data-event-source` to repos/`<user>`/`<repo>`.

@@ -54,7 +54,7 @@ cli.main(function(args, options) {
   var agg = onTheGithubs.aggregate(cli, config);
   agg.execute(function (err, users) {
     if (err) {
-      return cli.error(err);
+      return cli.fatal(err);
     }
 
     // Format snippet
@@ -78,11 +78,11 @@ cli.main(function(args, options) {
         bufSnippet += '</div>' + "\n";
       }
     } else {
-      return cli.error('Unsupported format: ' + options.format);
+      return cli.fatal('Unsupported format: ' + options.format);
     }
 
     if (!bufSnippet) {
-      return cli.error('No result');
+      return cli.fatal('No result');
     }
 
     // Optionally get input
@@ -98,7 +98,7 @@ cli.main(function(args, options) {
     var bufOut = '';
     if (options.tag) {
       if (bufIn.indexOf(options.tag) === -1) {
-        return cli.error('Tag \'' + options.tag + '\' not found in input file');
+        return cli.fatal('Tag \'' + options.tag + '\' not found in input file');
       }
       bufOut = bufIn.replace(options.tag, bufSnippet);
     } else {

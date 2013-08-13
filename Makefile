@@ -8,29 +8,7 @@ test:
 	./node_modules/.bin/mocha --reporter list
 
 build:
-	rm -rf build/*
-	mkdir -p build build/js build/css
-
-	cat \
-	 js/jquery.timeago.js \
-	 js/jquery.ghevents.js \
-	> build/js/jquery.ghevents.concat.js
-
-	node ./node_modules/yuicompressor/nodejs/cli.js -o \
-	 build/js/jquery.ghevents.min.js \
-	 build/js/jquery.ghevents.concat.js \
-	--type js
-
-	cp \
-	 js/jquery.js \
-	 js/jquery.timeago.js \
-	build/js/
-
-	node ./node_modules/yuicompressor/nodejs/cli.js -o \
-	 build/css/on-the-githubs.min.css \
-	 css/on-the-githubs.css \
-	--type css
-
+	grunt
 	echo 'This repo is just a deploy target. Do not edit. You changes will be lost.' > build/README.md
 
 community: build

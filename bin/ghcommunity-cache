@@ -81,6 +81,10 @@ cli.main(function(args, options) {
       return cli.error('Unsupported format: ' + options.format);
     }
 
+    if (!bufSnippet) {
+      return cli.error('No result');
+    }
+
     // Optionally get input
     var bufIn = '';
     if (options.input === '-') {

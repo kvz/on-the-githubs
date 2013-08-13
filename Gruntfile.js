@@ -32,18 +32,25 @@ module.exports = function(grunt) {
         // note that we are reading our project name using pkg.name i.e name of our project
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
-      my_target: {
+      ghevents: {
         files: {
           'build/js/jquery.ghevents.min.js': [
             'js/jquery.timeago.js', 
             'js/jquery.ghevents.js'
           ]
         }
+      },
+      jquery: {
+        files: {
+          'build/js/jquery.min.js': [
+            'js/jquery.js'
+          ]
+        }
       }
     },
     clean: [
-      "build/js", 
-      "build/css", 
+      'build/js', 
+      'build/css', 
     ]
   }); // end of configuring the grunt task
 

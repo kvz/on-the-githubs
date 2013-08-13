@@ -93,6 +93,9 @@ cli.main(function(args, options) {
     // Place snippet in input
     var bufOut = '';
     if (options.tag) {
+      if (bufIn.indexOf(options.tag) === -1) {
+        return cli.error('Tag \'' + options.tag + '\' not found in input file');
+      }
       bufOut = bufIn.replace(options.tag, bufSnippet);
     } else {
       bufOut = bufIn + bufSnippet;

@@ -33,18 +33,20 @@ Or your own: http://kvz.github.io/on-the-githubs/#`<user>`/`<repo>`
 
 To embed this into your site, add a few lines of code:
 
-	<link href="//kvz.github.io/on-the-githubs/css/on-the-githubs.min.css" rel="stylesheet" />
+```html
+<link href="//kvz.github.io/on-the-githubs/css/on-the-githubs.min.css" rel="stylesheet" />
 
-	<div class="on-the-githubs-events" data-event-source="repos/kvz/nsfailover">Loading...</div>
+<div class="on-the-githubs-events" data-event-source="repos/kvz/nsfailover">Loading...</div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="//kvz.github.io/on-the-githubs/js/jquery.ghevents.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//kvz.github.io/on-the-githubs/js/jquery.ghevents.min.js"></script>
 
-	<script type="text/javascript">
-		$('.on-the-githubs-events').ghevents();
-		// If you use bootstrap and want to enable tooltips
-		// $('a[rel]').tooltip();
-	</script>
+<script type="text/javascript">
+  $('.on-the-githubs-events').ghevents();
+  // If you use bootstrap and want to enable tooltips
+  // $('a[rel]').tooltip();
+</script>
+```
 
 Don't forget to change the `data-event-source` to repos/`<user>`/`<repo>`.
 

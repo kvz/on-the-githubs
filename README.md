@@ -11,7 +11,7 @@ on-the-githubs [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][Depende
 [DependencyStatusURL]:      //gemnasium.com/kvz/on-the-githubs "Dependency Status"
 [FlattrURL]:                https://flattr.com/submit/auto?user_id=kvz&url=github.com/kvz/on-the-githubs&title=on-the-githubs&language=&tags=github&category=software
 
-Demo: http://kvz.github.io/on-the-githubs/#kvz/nsfailover
+Demo: http://kvz.github.io/on-the-githubs/#repos/kvz/nsfailover
 
 To grow an open-source community it helps if your site has an active overview of what's going on and who
 is contributing.

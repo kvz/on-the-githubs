@@ -1,6 +1,6 @@
 {
   "name": "on-the-githubs",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Uses GitHub API3 to aggregate community activity of open source projects",
   "homepage": "https://github.com/kvz/on-the-githubs",
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",

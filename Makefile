@@ -12,13 +12,13 @@ build:
 	echo 'This repo is just a deploy target. Do not edit. You changes will be lost.' > build/README.md
 
 community: build
-	./bin/ghcommunity-cache \
+	./bin/in-the-githubs \
 	 --user kvz \
 	 --repo nsfailover \
 	 --format html \
 	 --concurrency 1 \
 	 --input demo.html \
-	 --tag '<div class="on-the-githubs-community" />' \
+	 --tag '<div class="in-the-githubs" />' \
 	 --output build/index.html \
 	 --debug
 

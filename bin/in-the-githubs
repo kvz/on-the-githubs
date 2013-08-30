@@ -8,7 +8,7 @@ cli.parse({
   format: ['f', 'Format', ['html', 'json'], 'html'],
   input: ['i', 'Input', 'path'],
   output: ['o', 'Output', 'path', '-'],
-  tag: ['t', 'Tag to replace in an existing html output file. E.g. {{ghcommunity}}', 'string', ''],
+  tag: ['t', 'Tag to replace in an existing html output file. E.g. {{community}}', 'string', ''],
   concurrency: ['c', 'Concurrency. Higher than 1 may change order within user categories.', 'int', 1]
 });
 
@@ -63,7 +63,7 @@ cli.main(function(args, options) {
       bufSnippet = JSON.stringify(users);
     } else if (options.format === 'html') {
       for (var type in users) {
-        bufSnippet += '<div class="on-the-githubs-community">' + "\n";
+        bufSnippet += '<div class="in-the-githubs">' + "\n";
         if (users[type].length) {
           bufSnippet += "  " + '<h2>' + type + ' (' + users[type].length + ')</h2>' + "\n";
           if (config.descriptions && config.descriptions[type]) {

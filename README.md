@@ -18,23 +18,21 @@ is contributing.
 
 The GitHub API3 provides all the information we need, but you may hit rate-limiters, or find it hard / have no time to embed this data into your website.
 
-This project aims to make it deadsimple to add community info & activity feeds. It's split
-into two subprojects:
-
-- **On the Githubs** - Downloads all involved community members, saves it as json or html so you can include it in your build procedure.
-- **In the Githubs**
-A jquery plugin for a near-realtime overview of events in 1 project or organisation. Does not require any buildsteps or setup, just add a few lines of code to your project's page.
+This project aims to make it deadsimple to add community info & activity feeds to your project's site. 
 
 
 ## On the Githubs example
+
+On the Githubs is a jquery plugin for a near-realtime overview of activity of a user, project or organisation. 
+It does not require any buildsteps or setup, just add a few lines of code to your project's HTML.
 
 Demo: http://kvz.github.io/on-the-githubs/#repos/kvz/nsfailover
 
 Or your own: 
 
- - http://kvz.github.io/on-the-githubs/#repos/`user`/`repo`
- - http://kvz.github.io/on-the-githubs/#users/`user`
- - http://kvz.github.io/on-the-githubs/#orgs/`org`
+ - http://kvz.github.io/on-the-githubs/#repos/`{user}`/`{repo}`
+ - http://kvz.github.io/on-the-githubs/#users/`{user}`
+ - http://kvz.github.io/on-the-githubs/#orgs/`{org}`
 
 To embed this into your site, add a few lines of code:
 
@@ -53,8 +51,7 @@ To embed this into your site, add a few lines of code:
 </script>
 ```
 
-Don't forget to change the `data-event-source` to repos/`<user>`/`<repo>`.
-
+Don't forget to change the `data-event-source` to repos/`{user}`/`{repo}`.
 
 ## On the Githubs development
 
@@ -67,6 +64,16 @@ node demo-server.js
 ```
 
 - Point your browser to http://127.0.0.1:8080
+
+
+# Bonus: In the Githubs
+
+Activity is limited to the last 20-100 events, but communities grow big.
+If you want to give credit where credit is due and show all the faces that make your community,
+we can't just pull that in in realtime from the API without hindering the UI or hitting GitHub's
+rate-limiter.
+
+So this is something we have to aggregate, cache, and compile at your site's buildtime.
 
 ## In the Githubs examples
 

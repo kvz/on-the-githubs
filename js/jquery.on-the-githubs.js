@@ -189,7 +189,6 @@
 
               break;
             case 'CreateEvent':
-              // @TODO: Not tested for ref_type != 'branch'
               action = 'created a new ' + item.payload.ref_type + ' in';
               branch = ': <a target="_blank" href="https://github.com/' + item.repo.name + '/tree/' + item.payload.ref + '">' + item.payload.ref + '</a>';
               break;

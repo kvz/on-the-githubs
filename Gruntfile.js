@@ -32,11 +32,11 @@ module.exports = function(grunt) {
         // note that we are reading our project name using pkg.name i.e name of our project
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
-      ghevents: {
+      onthegithubs: {
         files: {
-          'build/js/jquery.ghevents.min.js': [
+          'build/js/jquery.on-the-githubs.min.js': [
             'js/jquery.timeago.js', 
-            'js/jquery.ghevents.js'
+            'js/jquery.on-the-githubs.js'
           ]
         }
       },

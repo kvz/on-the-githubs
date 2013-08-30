@@ -41,13 +41,13 @@ To embed this into your site, add a few lines of code:
 ```html
 <link href="//kvz.github.io/on-the-githubs/css/on-the-githubs.min.css" rel="stylesheet" />
 
-<div class="on-the-githubs-events" data-event-source="repos/kvz/nsfailover">Loading...</div>
+<div class="on-the-githubs" data-event-source="repos/kvz/nsfailover">Loading...</div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//kvz.github.io/on-the-githubs/js/jquery.On the Githubs.min.js"></script>
 
 <script type="text/javascript">
-  $('.on-the-githubs-events').On the Githubs();
+  $('.on-the-githubs').onthegithubs();
   // If you use bootstrap and want to enable tooltips
   // $('a[rel]').tooltip();
 </script>

@@ -212,8 +212,12 @@
           $('<li/>').append(entry).appendTo($obj);
         }
 
-        $('abbr.timeago').timeago();
-        $('a[rel]').tooltip();
+        if ('timeago' in $('abbr.timeago')) {
+          $('abbr.timeago').timeago();
+        }
+        if ('tooltip' in $('a[rel]')) {
+          $('a[rel]').tooltip();
+        }
       });
     });
   };

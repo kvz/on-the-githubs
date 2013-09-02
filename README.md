@@ -18,17 +18,17 @@ is contributing.
 
 The GitHub API3 provides all the information we need, but you may hit rate-limiters, or find it hard / have no time to embed this data into your website.
 
-This project aims to make it deadsimple to add community info & activity feeds to your project's site. 
+This project aims to make it deadsimple to add community info & activity feeds to your project's site.
 
 
 ## On the Githubs example
 
-On the Githubs is a jquery plugin for a near-realtime overview of activity of a user, project or organisation. 
+On the Githubs is a jquery plugin for a near-realtime overview of activity of a user, project or organisation.
 It does not require any buildsteps or setup, just add a few lines of code to your project's HTML.
 
 Demo: http://kvz.github.io/on-the-githubs/#repos/kvz/nsfailover
 
-Or your own: 
+Or your own:
 
  - http://kvz.github.io/on-the-githubs/#repos/`{user}`/`{repo}`
  - http://kvz.github.io/on-the-githubs/#users/`{user}`
@@ -126,16 +126,16 @@ community:
 	 --format html \
 	 --concurrency 1 \
 	 --input _site/about.html \
-	 --tag '<p>replaced-by-on-the-githubs</p>' \
+	 --tag '<p>replaced-by-in-the-githubs</p>' \
 	 --output _site/about.html \
 	 --debug
 ```
 
-Now if you type `make community` after `jekyll build`, on-the-githubs will look for the
-`<p>replaced-by-on-the-githubs</p>` placeholder, and replace it with all the involved GitHub
+Now if you type `make community` after `jekyll build`, `in-the-githubs` will look for the
+`<p>replaced-by-in-the-githubs</p>` placeholder, and replace it with all the involved GitHub
 profiles.
 
-By default, `in-the-githubs` caches to `~/.on-the-githubs/` to avoid rate-limiters.
+By default, `in-the-githubs` caches to `~/.in-the-githubs/` to avoid rate-limiters.
 
 ## Requirements
 

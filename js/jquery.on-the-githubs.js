@@ -1,6 +1,6 @@
 (function( $ ) {
 
-  $.fn.ghevents = function( options ) {
+  $.fn.onthegithubs = function( options ) {
 
     var settings = $.extend({
       // event-source: "repos/kvz/nsfailover",
@@ -30,8 +30,8 @@
       }
 
       var d       = $.Deferred();
-      var githubs = localStorage.getItem('ghevents-feed-' + source);
-      var time    = localStorage.getItem('ghevents-date-' + source);
+      var githubs = localStorage.getItem('on-the-githubs-feed-' + source);
+      var time    = localStorage.getItem('on-the-githubs-date-' + source);
       var now     = +new Date() / 1000;
       var url     = 'https://api.github.com/' + source + '/events?per_page=20&callback=?';
 
@@ -47,8 +47,8 @@
         }
         data.data = data.data.slice(0, 20);
 
-        localStorage.setItem('ghevents-feed-' + source, JSON.stringify(data));
-        localStorage.setItem('ghevents-date-' + source, now);
+        localStorage.setItem('on-the-githubs-feed-' + source, JSON.stringify(data));
+        localStorage.setItem('on-the-githubs-date-' + source, now);
         d.resolve(data);
       });
 
@@ -189,9 +189,8 @@
 
               break;
             case 'CreateEvent':
-              // @TODO: Not tested for ref_type != 'branch'
               action = 'created a new ' + item.payload.ref_type + ' in';
-              branch = ': ' + item.payload.ref;
+              branch = ': <a target="_blank" href="https://github.com/' + item.repo.name + '/tree/' + item.payload.ref + '">' + item.payload.ref + '</a>';
               break;
             default:
               console.log(item.type, item);
@@ -213,8 +212,12 @@
           $('<li/>').append(entry).appendTo($obj);
         }
 
-        $('abbr.timeago').timeago();
-        $('a[rel]').tooltip();
+        if ('timeago' in $('abbr.timeago')) {
+          $('abbr.timeago').timeago();
+        }
+        if ('tooltip' in $('a[rel]')) {
+          $('a[rel]').tooltip();
+        }
       });
     });
   };

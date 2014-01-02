@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>on-the-githubs events demo</title>
+    <title>On the Githubs demo</title>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet" />
     <link href="./css/on-the-githubs.min.css" rel="stylesheet" />
   </head>
@@ -13,27 +13,45 @@
     </a>
 
     <div class="container">
-      <h1>on-the-githubs ghevents demo</h1>
+      <h1>On the Githubs</h1>
+        <p>This only involves including some js &amp; css to your page.</p>
+        <p>
+          For a prettier demo please go to the
+          <a href="http://tus.io/">tus.io</a> website.
+          This demo is just here to aid developers.
+        </p>
 
-      <p>
-        For a prettier demo please go to the
-        <a href="http://tus.io/">tus.io</a> website.
-        This demo is just here to aid developers.
-      </p>
+        <h2>Project activity <small>kvz/nsfailover</small></h2>
+          <div class="on-the-githubs" data-event-source="repos/kvz/nsfailover">
+            Loading...
+          </div>
+          <p>&nbsp;</p>
 
-      <div class="on-the-githubs-events" data-event-source="repos/kvz/nsfailover">
-        Loading...
-      </div>
+        <h2>User activity <small>kvz</small></h2>
+          <div class="on-the-githubs" data-event-source="users/kvz">
+            Loading...
+          </div>
+          <p>&nbsp;</p>
 
-      <h1>on-the-githubs ghcommunity demo</h1>
-      <div class="on-the-githubs-community" />
+        <h2>Organisation acitivy <small>tus</small></h2>
+          <div class="on-the-githubs" data-event-source="orgs/tus">
+            Loading...
+          </div>
+          <p>&nbsp;</p>
+
+
+      <h1>In the Githubs demo</h1>
+        <p>This involves installing an npm and generating json or html at build-time.</p>
+        <div class="in-the-githubs" />
+        <p>&nbsp;</p>
+
     </div>
 
 
   </body>
 
   <script src="./js/jquery.min.js"></script>
-  <script src="./js/jquery.ghevents.min.js"></script>
+  <script src="./js/jquery.on-the-githubs.min.js"></script>
 
   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 
@@ -42,8 +60,8 @@
 
     var options = {};
     if (window.location.hash) {
-      options['event-source'] = window.location.hash.replace('#', 'repos/');
+      options['event-source'] = window.location.hash.replace('#', '');
     }
-    $('.on-the-githubs-events').ghevents(options);
+    $('.on-the-githubs').onthegithubs(options);
   </script>
 </html>

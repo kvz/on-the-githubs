@@ -26,7 +26,7 @@ publish:
 	grunt release
 	rm -rf build/.git ||true
 	cd build && git init && git add .
-	cd build && git commit -m "Update $(ghpages_user)/$(ghpages_repo) site by $${USER}"
+	cd build && git commit -nm "Update $(ghpages_user)/$(ghpages_repo) site by $${USER}"
 	cd build && git remote add origin git@github.com:$(ghpages_user)/$(ghpages_repo).git
 	cd build && git push origin master:refs/heads/$(ghpages_branch) --force
 

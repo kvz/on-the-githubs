@@ -113,7 +113,7 @@ describe('aggregate', function(){
 
   describe('doTask', function(){
     it('should find users', function(){
-      agg.getJson = function(task, cb) {
+      agg.getJson = function(task, bypassCache, cb) {
         cb(null, fixture_json, task);
       };
       agg.doTask(null, fixture_task, function(err, users, task) {
@@ -125,7 +125,7 @@ describe('aggregate', function(){
 
   describe('rateLimiter', function(){
     it('should allow by rate limit', function(){
-      agg.getJson = function(task, cb) {
+      agg.getJson = function(task, bypassCache, cb) {
         cb(null, fixture_rate_limit_allow, task);
       };
       agg.rateLimiter(function(err, timeout) {
@@ -135,7 +135,7 @@ describe('aggregate', function(){
     });
 
     it('should deny by rate limit and have a variable timeout higher than 60s', function(){
-      agg.getJson = function(task, cb) {
+      agg.getJson = function(task, bypassCache, cb) {
         cb(null, fixture_rate_limit_deny, task);
       };
       agg.rateLimiter(function(err, timeout) {

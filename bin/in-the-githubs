@@ -71,7 +71,7 @@ cli.main(function(args, options) {
           }
           for (var i in users[type]) {
             bufSnippet += "  " + '<a target="_blank" rel="tooltip" data-placement="bottom" title="' + users[type][i].login + '" href="' + users[type][i].html_url + '">';
-            bufSnippet += '<img src="' + users[type][i].avatar_url + '&s=64" />';
+            bufSnippet += '<img src="' + users[type][i].avatar_url + '" />';
             bufSnippet += '</a>' + "\n";
           }
         }

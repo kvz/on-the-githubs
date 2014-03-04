@@ -78,7 +78,7 @@
         for (var i = 0; i < data.data.length; i++) {
           var item = data.data[i];
 
-          var gravatarSrc = item.actor.avatar_url + '&s=64';
+          var gravatarSrc = item.actor.avatar_url;
           var username    = item.actor.login;
           var action      = '';
           var branch      = '';

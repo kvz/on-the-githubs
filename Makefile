@@ -22,7 +22,7 @@ community: build
 	 --output build/index.html \
 	 --debug
 
-publish:
+publish: build community test
 	grunt release
 	rm -rf build/.git ||true
 	cd build && git init && git add .

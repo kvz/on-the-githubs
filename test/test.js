@@ -8,7 +8,7 @@ var agg          = onTheGithubs.aggregate(null, {
     contributors: [
       // '/orgs/{user}/members',
       '/repos/{user}/{repo}/contributors',
-      '/repos/{user}/{repo}/collaborators'
+      // '/repos/{user}/{repo}/collaborators'
     ],
     collaborators: [
       '/repos/{user}/{repo}/issues/comments',
@@ -107,7 +107,7 @@ describe('aggregate', function(){
     it('should return 12 tasks', function(){
       var tasks = agg.createTasks(agg.config.userpaths);
       assert.equal('https://api.github.com/repos/kvz/nsfailover/contributors?per_page=100', tasks[0].url);
-      assert.equal(12, tasks.length);
+      assert.equal(10, tasks.length);
     });
   });
 

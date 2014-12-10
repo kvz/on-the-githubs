@@ -34,7 +34,7 @@ cli.main(function(args, options) {
       Contributors: [
         // '/orgs/{user}/members',
         '/repos/{user}/{repo}/contributors',
-        '/repos/{user}/{repo}/collaborators'
+        // '/repos/{user}/{repo}/collaborators'
       ],
       Collaborators: [
         '/repos/{user}/{repo}/issues/comments',

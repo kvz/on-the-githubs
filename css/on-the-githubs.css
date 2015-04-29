@@ -11,7 +11,7 @@
   display:inline-block;
   float:left;
   margin:0;
-  width:550px;
+  max-width:550px;
 }
 .on-the-githubs abbr.timeago {
   position:absolute;

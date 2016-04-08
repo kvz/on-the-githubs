@@ -43,7 +43,7 @@ To embed this into your site, add a few lines of code:
 <div class="on-the-githubs" data-event-source="repos/kvz/nsfailover">Loading...</div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="//kvz.github.io/on-the-githubs/js/jquery.On the Githubs.min.js"></script>
+<script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
 <script type="text/javascript">
   $('.on-the-githubs').onthegithubs();

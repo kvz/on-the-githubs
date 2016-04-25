@@ -3,7 +3,7 @@
   $.fn.onthegithubs = function( options ) {
 
     var settings = $.extend({
-      // event-source: "repos/kvz/nsfailover",
+    // event-source: "repos/kvz/nsfailover",
     }, options || {});
     var self = this;
 
@@ -22,6 +22,15 @@
       return template.replace(/\{([^\}]*)\}/g, function(m, key) {
         return vars.hasOwnProperty(key) ? vars[key] : "";
       });
+    };
+
+    var escapeHtml = function (unsafe) {
+      return unsafe
+           .replace(/&/g, "&amp;")
+           .replace(/</g, "&lt;")
+           .replace(/>/g, "&gt;")
+           .replace(/"/g, "&quot;")
+           .replace(/'/g, "&#039;");
     };
 
     var download = function (source) {
@@ -105,7 +114,7 @@
               action += '</a> on';
               break;
             case 'CommitCommentEvent':
-              action  = 'commented "' + item.payload.comment.body + '" ';
+              action  = 'commented “' + escapeHtml(item.payload.comment.body) + '” ';
               action += 'on a commit to <a target="_blank" href="' + item.payload.comment.html_url + '">';
               action += item.payload.comment.path + '</a> in';
               break;
@@ -116,7 +125,7 @@
               if (isClosed) {
                 action += '<s>';
               }
-              action += item.payload.issue.title;
+              action += escapeHtml(item.payload.issue.title);
               if (isClosed) {
                 action += '</s>';
               }
@@ -139,10 +148,12 @@
                 if (msg.length > item.payload.commits[j].message.length) {
                   msg += ' ...';
                 }
+                msg = escapeHtml(msg)
                 messages.push(msg);
               }
               var compareUrl  = firstUrl.replace('commit', 'compare').replace(firstCommit, firstCommit + '...' + lastCommit);
               var txtMessages = messages.join(' &mdash; ');
+              txtMessages = escapeHtml(txtMessages)
 
               action  = 'pushed ';
               if (item.payload.commits.length === 1) {

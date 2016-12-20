@@ -9,7 +9,8 @@ cli.parse({
   input: ['i', 'Input', 'path'],
   output: ['o', 'Output', 'path', '-'],
   tag: ['t', 'Tag to replace in an existing html output file. E.g. {{community}}', 'string', ''],
-  concurrency: ['c', 'Concurrency. Higher than 1 may change order within user categories.', 'int', 1]
+  concurrency: ['c', 'Concurrency. Higher than 1 may change order within user categories.', 'int', 1],
+  groups: ['g', 'Groups to include in output (comma separated)', 'string', 'contributors,collaborators,watchers']
 });
 
 cli.main(function(args, options) {
@@ -30,22 +31,31 @@ cli.main(function(args, options) {
       Collaborators: 'People commenting',
       Watchers: 'People watching'
     },
-    userpaths: {
-      Contributors: [
-        // '/orgs/{user}/members',
-        '/repos/{user}/{repo}/contributors',
-        // '/repos/{user}/{repo}/collaborators'
-      ],
-      Collaborators: [
-        '/repos/{user}/{repo}/issues/comments',
-        '/repos/{user}/{repo}/issues'
-      ],
-      Watchers: [
-        // '/repos/{user}/{repo}/subscribers',
-        '/repos/{user}/{repo}/stargazers'
-      ]
-    }
+    userpaths: {}
   };
+
+  var allGroups = {
+    Contributors: [
+      '/repos/{user}/{repo}/contributors'
+    ],
+    Collaborators: [
+      '/repos/{user}/{repo}/issues/comments',
+      '/repos/{user}/{repo}/issues'
+    ],
+    Watchers: [
+      '/repos/{user}/{repo}/stargazers'
+    ]
+  };
+
+  var groups = options.groups.split(',');
+  groups.forEach(function (groupName) {
+    groupName = groupName[0].toUpperCase() + groupName.slice(1);
+    if (!(groupName in allGroups)) {
+      this.fatal('Unknown group specified called ' + groupName + '. ');
+    }
+
+    config.userpaths[groupName] = allGroups[groupName];
+  }.bind(this));
 
   config.user        = options.user;
   config.repo        = options.repo;

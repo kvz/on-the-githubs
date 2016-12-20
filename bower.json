@@ -1,0 +1,23 @@
+{
+  "name": "on-the-githubs",
+  "description": "Uses GitHub API3 to aggregate community activity of open source projects",
+  "main": "js/jquery.on-the-githubs.js",
+  "authors": [
+    "Kevin van Zonneveld <kevin@vanzonneveld.net>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "github",
+    "community",
+    "activity",
+    "api"
+  ],
+  "homepage": "https://github.com/kvz/on-the-githubs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
